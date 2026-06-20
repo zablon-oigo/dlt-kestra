@@ -1,0 +1,29 @@
+# Description: Sync Postgres all tables to Fluss
+
+source:
+  type: postgres
+  hostname: db
+  port: 5432
+  username: root
+  password: password
+  tables: adb.\.*.\.*
+
+  decoding.plugin.name: pgoutput
+  slot.name: pgtest
+  schema-change.enabled: true
+
+
+sink:
+  type: fluss
+  bootstrap.servers: fluss:9123
+
+  properties.client.security.protocol: SASL
+  properties.client.security.sasl.mechanism: PLAIN
+  properties.client.security.sasl.username: developer
+  properties.client.security.sasl.password: developer-pass
+
+
+pipeline:
+  name: Postgres to Fluss Pipeline
+  parallelism: 2
+  schema.change.behavior: LENIENT

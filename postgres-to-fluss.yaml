@@ -15,7 +15,7 @@ source:
 
 sink:
   type: fluss
-  bootstrap.servers: fluss:9123
+  bootstrap.servers: coordinator-server:9123
 
   properties.client.security.protocol: SASL
   properties.client.security.sasl.mechanism: PLAIN
